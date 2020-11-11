@@ -1,0 +1,81 @@
+ExportTOExcel() {
+    this.dataExcel = [];
+    if (!this.listNotEat) {
+      return;
+    }
+    this.listNotEat.forEach(ele => {
+      this.listNotEatExport = { ...ele.user };
+      this.getListNonBreakfast(ele.status_non_breakfast);
+      this.getListNonLunch(ele.status_non_lunch);
+      this.listNotEatExport.statusNonBreakfast = this.listNonBreakfast.join(', ');
+      this.listNotEatExport.statusNonLunch = this.listNonLunch.join(', ');
+      this.dataExcel.push(this.listNotEatExport);
+    });
+    this.JSONToCSVConvertor(this.dataExcel, 'Danh sách nhân viên không ăn', true);
+  }
+
+  getTitleExcel(arrData) {
+    this.row = '';
+    // tslint:disable-next-line: forin
+    for (const key in arrData[0]) {
+      // this.row = '';
+      if (key === 'user') {
+        this.row += 'Tên' + ',';
+      } else if (key === 'ip') {
+        this.row += 'IP' + ',';
+      } else if (key === 'dept') {
+        this.row += 'Khối ' + ',';
+      } else if (key === 'team') {
+        this.row += 'Đội' + ',';
+      } else if (key === 'statusNonBreakfast') {
+        this.row += 'Ngày không ăn sáng' + ',';
+      } else if (key === 'statusNonLunch') {
+        this.row += 'Ngày không ăn trưa' + ',';
+      } else {
+        this.row += ' ';
+      }
+    }
+  }
+
+  getRecordsExcel(arrData) {
+    // tslint:disable-next-line: prefer-for-of
+    for (let i = 0; i < arrData.length; i++) {
+      this.row = '';
+      // tslint:disable-next-line: forin
+      for (const key in arrData[i]) {
+        if (key === 'id') {
+          this.row += ' ';
+        } else if (key === 'role') {
+          this.row += ' ';
+        } else {
+          this.row += '"' + arrData[i][key] + '",';
+        }
+      }
+      this.row.slice(0, this.row.length - 1);
+      this.CSV += this.row + '\r\n';
+    }
+  }
+
+  JSONToCSVConvertor(JSONData, ReportTitle, ShowLabel) {
+    const arrData = typeof JSONData !== 'object' ? JSON.parse(JSONData) : JSONData;
+    this.CSV = '';
+    this.CSV += ReportTitle + '\r\n\n';
+    if (ShowLabel) {
+      this.getTitleExcel(arrData);
+      this.row = this.row.slice(0, -1);
+      this.CSV += this.row + '\r\n';
+    }
+    this.getRecordsExcel(arrData);
+    if (this.CSV === '') {
+      alert('Invalid data');
+      return;
+    }
+    const fileName = 'Danh sách nhân viên không ăn';
+    const uri = 'data:text/csv;charset=utf-8,' + encodeURI(this.CSV);
+    const link = document.createElement('a');
+    link.href = uri;
+    link.download = fileName + '.csv';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }

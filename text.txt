@@ -1,1 +1,2 @@
 https://viblo.asia/p/ve-bieu-do-voi-php-va-chartjs-63vKjbnxK2R
+https://www.nicesnippets.com/blog/codeigniter-create-bar-chart-in-php-with-chart-js

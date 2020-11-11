@@ -3,6 +3,7 @@ class DbModel
 {
     public function connect()
     {
+        // header('Content-Type: application/json');
         $con = mysqli_connect('localhost', 'root', '', 'learn_mvc');
         mysqli_set_charset($con, 'utf8');
         if (mysqli_connect_errno()) {

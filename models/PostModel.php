@@ -41,13 +41,13 @@ class PostModel extends DbModel
         ";
 
         $result = $con->query($sql);
-
+            echo $result;
         // if($result) {
         //     echo 'success';
         // } else {
         //     echo 'fail';
         // }
 
-        return $result;
+        // return $result;
     }
 }

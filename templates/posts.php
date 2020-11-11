@@ -11,6 +11,13 @@
 <body>
     <div class="container">
         <div class="row">
+            <?php 
+                if(isset($posts)) {
+                    echo ' vl';
+                } else {
+                    echo 'cc';
+                }
+            ?>
             <?php
             foreach ($posts as $post) :
             ?>

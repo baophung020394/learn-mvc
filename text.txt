@@ -1,2 +1,4 @@
 https://viblo.asia/p/ve-bieu-do-voi-php-va-chartjs-63vKjbnxK2R
 https://www.nicesnippets.com/blog/codeigniter-create-bar-chart-in-php-with-chart-js
+cach run laravel 8
+https://stackoverflow.com/questions/31543175/getting-a-500-internal-server-error-on-laravel-5-ubuntu-14-04

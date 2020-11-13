@@ -3,8 +3,9 @@
 
 <head>
     <style type="text/css">
-        body {
+        .container-chart {
             width: 550px;
+            margin: auto;
         }
 
         #chart-container {
@@ -20,8 +21,10 @@
 
 <body>
     <h1>Hello</h1>
-    <div id="chart-container">
-        <canvas id="bar-chart"></canvas>
+    <div class="container-chart">
+        <div id="chart-container">
+            <canvas id="bar-chart"></canvas>
+        </div>
     </div>
 
     <script>
